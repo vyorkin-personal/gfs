@@ -25,6 +25,7 @@ OBJECTS := $(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%,$(SOURCES:.$(SRC_EXT)=.o))
 
 $(LIB_TARGET): $(OBJECTS)
 	@echo 'linking...'
+	mkdir -p $(BIN_DIR)
 	ar rcs $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT)
