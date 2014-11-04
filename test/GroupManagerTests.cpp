@@ -1,10 +1,5 @@
 #include "catch.hpp"
-
-#include "World.hpp"
-#include "EntityManager.hpp"
-#include "GroupManager.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("GroupManager") {
     auto world = World();

@@ -1,22 +1,7 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Example.hpp"
 
-class VelocityComponent: public gfs::Component {
-    public:
-	VelocityComponent(const float x, const float y) {
-	    this->x = x;
-	    this->y = y;
-	}
-
-	float getX() const {
-	    return x;
-	}
-
-	float getY() const {
-	    return y;
-	}
-    private:
-	float x;
-	float y;
+struct VelocityComponent: public ecs::Component {
+    VelocityComponent(const Vector2f& vec): vector{vec} {}
 };

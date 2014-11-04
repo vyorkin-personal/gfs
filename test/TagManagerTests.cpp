@@ -1,9 +1,5 @@
 #include "catch.hpp"
-
-#include "World.hpp"
-#include "TagManager.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("TagManager") {
     auto world = World();

@@ -1,13 +1,5 @@
 #include "catch.hpp"
-
-#include "World.hpp"
-#include "EntityManager.hpp"
-#include "EntityManagerDumper.hpp"
-
-#include "components/PositionComponent.hpp"
-#include "components/VelocityComponent.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("EntityManager") {
     auto world = World();

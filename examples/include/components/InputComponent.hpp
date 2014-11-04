@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Example.hpp"
 
-class InputComponent: public gfs::Component {
+class InputComponent: public ecs::Component {
     public:
 	void move() {
 	    moving = true;

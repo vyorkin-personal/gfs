@@ -1,16 +1,15 @@
 #pragma once
 
-#include "System.hpp"
-
+#include "Example.hpp"
 #include "components/InputComponent.hpp"
 
-class InputSystem: public gfs::System {
+class InputSystem: public ecs::System {
     public:
         virtual void initialize() {
             watchComponents<InputComponent>();
         }
 
-        virtual void processEntity(gfs::Entity* entity, const float delta) {
+        virtual void processEntity(ecs::Entity* entity, const float delta) {
             auto input = entity->getComponent<InputComponent>();
             if (input->isMoving())
                 input->stop();

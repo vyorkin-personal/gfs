@@ -1,8 +1,5 @@
 #include "catch.hpp"
-
-#include "World.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("World") {
     auto world = World();

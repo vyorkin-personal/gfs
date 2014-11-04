@@ -1,13 +1,5 @@
 #include "catch.hpp"
-
-#include "Prerequisites.hpp"
-#include "Component.hpp"
-#include "UidRegistry.hpp"
-
-#include "components/PositionComponent.hpp"
-#include "components/VelocityComponent.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("UidRegistry") {
     auto registry = UidRegistry();

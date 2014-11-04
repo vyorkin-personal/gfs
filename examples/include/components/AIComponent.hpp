@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Example.hpp"
 
-class AIComponent: public gfs::Component {
+class AIComponent: public ecs::Component {
     public:
 	AIComponent(bool idling = true) {
 	    this->idling = idling;

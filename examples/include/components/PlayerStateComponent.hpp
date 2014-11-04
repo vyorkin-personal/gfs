@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Example.hpp"
 
-class PlayerStateComponent: public gfs::Component {
+class PlayerStateComponent: public ecs::Component {
     public:
 	PlayerStateComponent(int hp):
 	    initialHealth{hp}, health{hp} {}

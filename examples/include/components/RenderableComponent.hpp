@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Example.hpp"
 
-class RenderableComponent: public gfs::Component {
+class RenderableComponent: public ecs::Component {
     public:
 	void draw() {
 	    drawn = true;

@@ -1,23 +1,5 @@
 #include "catch.hpp"
-
-#include "World.hpp"
-#include "System.hpp"
-#include "EntityManagerDumper.hpp"
-
-#include "systems/AISystem.hpp"
-#include "systems/InputSystem.hpp"
-#include "systems/MovementSystem.hpp"
-#include "systems/PlayerSystem.hpp"
-#include "systems/RenderingSystem.hpp"
-
-#include "components/AIComponent.hpp"
-#include "components/InputComponent.hpp"
-#include "components/PlayerStateComponent.hpp"
-#include "components/PositionComponent.hpp"
-#include "components/RenderableComponent.hpp"
-#include "components/VelocityComponent.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("System") {
     auto world = World();

@@ -1,9 +1,5 @@
 #include "catch.hpp"
-#include "Component.hpp"
-
-using namespace gfs;
-
-#include "components/PositionComponent.hpp"
+#include "Test.hpp"
 
 TEST_CASE("Component") {
     auto p1 = PositionComponent(1.1F, 1.2F);

@@ -1,23 +1,19 @@
 #pragma once
 
-#include "System.hpp"
-
+#include "Example.hpp"
 #include "components/PositionComponent.hpp"
 #include "components/VelocityComponent.hpp"
 
-class MovementSystem: public gfs::System {
+class MovementSystem: public ecs::System {
     public:
         virtual void initialize() {
             watchComponents<VelocityComponent, PositionComponent>();
         }
 
-        virtual void processEntity(gfs::Entity* entity, const float delta) {
+        virtual void processEntity(ecs::Entity* entity, const float delta) {
             auto pos = entity->getComponent<PositionComponent>();
             auto vel = entity->getComponent<VelocityComponent>();
 
-            auto dx = vel->getX() * delta;
-            auto dy = vel->getY() * delta;
-
-            pos->move(dx, dy);
+            pos->move(vel->vector * delta);
         }
 };

@@ -1,28 +1,13 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Example.hpp"
 
-class PositionComponent: public gfs::Component {
-    public:
-	PositionComponent(const float x, const float y) {
-	    this->x = x;
-	    this->y = y;
-	}
+struct PositionComponent: public ecs::Component {
+    PositionComponent(const Point2f& point): point{point}
 
-	float getX() const {
-	    return x;
-	}
+    void move(const Vector2f& speed) {
+	point += speed;
+    }
 
-	float getY() const {
-	    return y;
-	}
-
-	void move(const float dx, const float dy) {
-	    x += dx;
-	    y += dy;
-	}
-
-    private:
-	float x;
-	float y;
+    Point2f point;
 };

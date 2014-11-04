@@ -1,9 +1,5 @@
 #include "catch.hpp"
-
-#include "Prerequisites.hpp"
-#include "Uid.hpp"
-
-using namespace gfs;
+#include "Test.hpp"
 
 TEST_CASE("Uid") {
     auto bitSet = BitSet(1);
