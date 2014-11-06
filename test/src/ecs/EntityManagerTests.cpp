@@ -54,11 +54,11 @@ TEST_CASE("EntityManager") {
 	auto posUid = uidRegistry->get<PositionComponent>();
 	auto velUid = uidRegistry->get<VelocityComponent>();
 
-	auto pos1 = new PositionComponent(1.0F, 2.0F);
-	auto pos2 = new PositionComponent(3.0F, 4.0F);
+	auto pos1 = new PositionComponent(1.0f, 2.0f);
+	auto pos2 = new PositionComponent(3.0f, 4.0f);
 
-	auto vel1 = new VelocityComponent(2.3F, 1.4F);
-	auto vel2 = new VelocityComponent(1.5F, 7.5F);
+	auto vel1 = new VelocityComponent(2.3f, 1.4f);
+	auto vel2 = new VelocityComponent(1.5f, 7.5f);
 
 	entityManager->addComponent(entity1, pos1);
 	entityManager->addComponent(entity1, vel1);

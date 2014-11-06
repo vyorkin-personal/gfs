@@ -3,7 +3,8 @@
 #include "Prerequisites.hpp"
 
 namespace gfs {
-    template <class T>
+    namespace math {
+	template <class T>
 	struct Vector2 {
 	    static const Vector2 zero;
 	    static const Vector2 one;
@@ -53,6 +54,7 @@ namespace gfs {
 
 	    T x, y;
 	};
+    }
 }
 
 #include "Vector2.inl"

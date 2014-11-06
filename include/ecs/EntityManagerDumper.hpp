@@ -4,8 +4,8 @@
 
 #ifdef DEBUG
 
-#include "EntityManager.hpp" 
-#include "Entity.hpp"
+#include "ecs/EntityManager.hpp" 
+#include "ecs/Entity.hpp"
 
 namespace gfs {
     namespace ecs {

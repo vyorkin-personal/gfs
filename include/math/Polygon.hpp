@@ -3,6 +3,8 @@
 #include "Prerequisites.hpp"
 
 namespace gfs {
-    struct Polygon {
-    };
+    namespace math {
+	struct Polygon {
+	};
+    }
 }

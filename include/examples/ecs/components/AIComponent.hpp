@@ -1,12 +1,10 @@
 #pragma once
 
-#include "Example.hpp"
+#include "examples/Example.hpp"
 
-class AIComponent: public ecs::Component {
+class AIComponent: public Component {
     public:
-	AIComponent(bool idling = true) {
-	    this->idling = idling;
-	}
+	AIComponent(bool idling = true): idling{idling} {}
 
 	bool isIdling() const {
 	    return idling;

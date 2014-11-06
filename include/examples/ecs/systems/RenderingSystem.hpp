@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Example.hpp"
-#include "components/RenderableComponent.hpp"
+#include "examples/Example.hpp"
+#include "examples/ecs/components/RenderableComponent.hpp"
 
-class RenderingSystem: public ecs::System {
+class RenderingSystem: public System {
     public:
         virtual void initialize() {
             watchComponents<RenderableComponent>();
         }
 
-        virtual void processEntity(ecs::Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity, const float delta) {
             auto renderable = entity->getComponent<RenderableComponent>();
             renderable->draw();
         }

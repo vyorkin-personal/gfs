@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Prerequisites.hpp"
-#include "UidRegistry.hpp"
-#include "EntityManager.hpp"
-#include "Entity.hpp"
-#include "SystemManager.hpp"
-#include "TagManager.hpp"
-#include "GroupManager.hpp"
+
+#include "ecs/UidRegistry.hpp"
+#include "ecs/EntityManager.hpp"
+#include "ecs/Entity.hpp"
+#include "ecs/SystemManager.hpp"
+#include "ecs/TagManager.hpp"
+#include "ecs/GroupManager.hpp"
 
 namespace gfs {
     namespace ecs {

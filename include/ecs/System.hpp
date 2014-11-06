@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Prerequisites.hpp"
-#include "UidRegistry.hpp"
-#include "EntityBits.hpp"
+#include "ecs/UidRegistry.hpp"
+#include "ecs/EntityBits.hpp"
 
 namespace gfs {
     namespace ecs {
@@ -17,9 +17,9 @@ namespace gfs {
 
             protected:
                 template<class... Components>
-                    void watchComponents() {
-                        addToComponentBits(TypeList<Components...>());
-                    }
+                void watchComponents() {
+                    addToComponentBits(TypeList<Components...>());
+                }
                 void watchComponents(var<std::type_info> types);
                 void watchTags(var<String> tags);
                 void watchGroups(var<String> groups);
@@ -49,10 +49,10 @@ namespace gfs {
                 template<class...> struct TypeList {};
 
                 template<class C, class... Rest>
-                    void addToComponentBits(TypeList<C, Rest...>) {
-                        bits.component |= uidRegistry->getBit<C>();
-                        addToComponentBits(TypeList<Rest...>());
-                    }
+                void addToComponentBits(TypeList<C, Rest...>) {
+                    bits.component |= uidRegistry->getBit<C>();
+                    addToComponentBits(TypeList<Rest...>());
+                }
 
                 void addToComponentBits(TypeList<>) {}
 

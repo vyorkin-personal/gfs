@@ -1,31 +1,33 @@
-#include "UidRegistry.hpp"
+#include "ecs/UidRegistry.hpp"
 
 namespace gfs {
-    UidRegistry::UidRegistry():
-        nextId{1}, nextBit{1} {}
+    namespace ecs {
+        UidRegistry::UidRegistry():
+            nextId{1}, nextBit{1} {}
 
-    UidRegistry::~UidRegistry() {
-        clear();
-    }
-
-    const Uid& UidRegistry::get(const size_t hash) {
-        auto uid = map[hash];
-
-        if (uid == nullptr) {
-            uid = new Uid(nextId, nextBit);
-            map[hash] = uid;
-
-            nextId++;
-            nextBit <<= 1;
+        UidRegistry::~UidRegistry() {
+            clear();
         }
 
-        return *uid;
-    }
+        const Uid& UidRegistry::get(const size_t hash) {
+            auto uid = map[hash];
 
-    void UidRegistry::clear() {
-        for (const auto& it: map)
-            delete it.second;
-        
-        map.clear();
+            if (uid == nullptr) {
+                uid = new Uid(nextId, nextBit);
+                map[hash] = uid;
+
+                nextId++;
+                nextBit <<= 1;
+            }
+
+            return *uid;
+        }
+
+        void UidRegistry::clear() {
+            for (const auto& it: map)
+                delete it.second;
+            
+            map.clear();
+        }
     }
 }

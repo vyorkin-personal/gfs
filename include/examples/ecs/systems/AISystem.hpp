@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Example.hpp"
-#include "components/AIComponent.hpp"
+#include "examples/Example.hpp"
+#include "examples/ecs/components/AIComponent.hpp"
 
-class AISystem: public ecs::System {
+class AISystem: public System {
     public:
         virtual void initialize() {
             watchGroups({"enemy"});
         }
 
-        virtual void processEntity(ecs::Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity, const float delta) {
             auto ai = entity->getComponent<AIComponent>();
             ai->nextState();
         }

@@ -66,7 +66,7 @@ TEST_CASE("GroupManager") {
     }
 
     SECTION("clear groups") {
-        groupManager->clearGroups(entity2);
+        groupManager->clear(entity2);
         
         REQUIRE(groupManager->isInGroup(entity2, group1) == false);
         REQUIRE(groupManager->isInGroup(entity2, group2) == false);

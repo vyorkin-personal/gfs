@@ -9,8 +9,8 @@ TEST_CASE("Entity") {
     auto entity = entityManager->create();
 
     SECTION("add multiple components at once") {
-        auto pos = new PositionComponent(1.1F, 2.1F);
-        auto vel = new VelocityComponent(2.2F, 3.2F);
+        auto pos = new PositionComponent(1.1f, 2.1f);
+        auto vel = new VelocityComponent(2.2f, 3.2f);
 
         entity->addComponents({pos, vel});
 

@@ -1,2 +1,4 @@
 namespace gfs {
+    namespace math {
+    }
 }

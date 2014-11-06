@@ -11,11 +11,11 @@ TEST_CASE("UidRegistry") {
 	auto vec2 = std::vector<int>{4, 5, 6};
 	auto vec1 = std::vector<int>{1, 2, 3};
 
-	auto pos1 = new PositionComponent(1.0F, 2.0F);
-	auto pos2 = new PositionComponent(2.0F, 3.0F);
+	auto pos1 = new PositionComponent(1.0f, 2.0f);
+	auto pos2 = new PositionComponent(2.0f, 3.0f);
 
-	auto vel1 = new VelocityComponent(1.2F, 3.4F);
-	auto vel2 = new VelocityComponent(5.6F, 7.8F);
+	auto vel1 = new VelocityComponent(1.2f, 3.4f);
+	auto vel2 = new VelocityComponent(5.6f, 7.8f);
 
 	auto uidStr1Type = registry.get(typeid(str1));
 	auto uidStr2Type = registry.get(typeid(str2));

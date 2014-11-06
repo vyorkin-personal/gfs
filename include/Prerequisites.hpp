@@ -20,35 +20,37 @@
 #include "Configuration.hpp"
 
 namespace gfs {
-    template <class T> class Vector2<T>;
-    template <class T> class Color4<T>;
-
-    using Vector2f = Vector2<GLfloat>;
-    using Vector2d = Vector2<GLdouble>;
-    using Vector2i = Vector2<GLint>;
-
-    using Point2f = Vector2<GLfloat>;
-    using Point2d = Vector2<GLdouble>;
-    using Point2i = Vector2<GLint>;
-
-    using Color4f = Color4<GLfloat>;
-    using Color4d = Color4<GLdouble>;
-    using Color4i = Color4<GLint>;
-
-    using Size = Vector2i;
-
     template<class T>
     using var = std::initializer_list<T>;
 
     using String = std::string;
     using StringSet = std::unordered_set<String>;
 
-    class Polygon;
+    namespace math {
+        template <class T> struct Vector2;
+        template <class T> struct Color4;
+
+        using Vector2f = Vector2<float>;
+        using Vector2d = Vector2<double>;
+        using Vector2i = Vector2<int>;
+
+        using Point2f = Vector2<float>;
+        using Point2d = Vector2<double>;
+        using Point2i = Vector2<int>;
+
+        using Color4f = Color4<float>;
+        using Color4d = Color4<double>;
+        using Color4i = Color4<int>;
+
+        using Size = Vector2i;
+
+        struct Polygon;
+    }
 
     namespace ecs {
         class Uid;
         class Component;
-        class EntityBits;
+        struct EntityBits;
         class Entity;
         class System;
         class UidRegistry;

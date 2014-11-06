@@ -7,9 +7,9 @@ TEST_CASE("System") {
     auto entityManager = world.getEntityManager();
     auto dumper = EntityManagerDumper(entityManager);
 
-    auto movementSystem = systemManager->create<MovementSystem>();
-    auto playerSystem = systemManager->create<PlayerSystem>();
-    auto aiSystem = systemManager->create<AISystem>();
+    auto movementSystem = systemManager->add(new MovementSystem());
+    auto playerSystem = systemManager->add(new PlayerSystem());
+    auto aiSystem = systemManager->add(new AISystem());
 
     world.setDelta(1.2);
 
@@ -51,15 +51,15 @@ TEST_CASE("System") {
 
     SECTION("component") {
         auto ship = entityManager->create();
-        auto velocity = new VelocityComponent(1.0F, 1.0F);
-        auto position = new PositionComponent(1.2F, 3.4F);
+        auto velocity = new VelocityComponent(1.0f, 1.0f);
+        auto position = new PositionComponent(1.2f, 3.4f);
 
         ship->addComponent(velocity);
         ship->addComponent(position);
 
         movementSystem->process(world.getDelta());
 
-        REQUIRE(position->getX() > 1.2);
-        REQUIRE(position->getY() > 3.4);
+        REQUIRE(position->point.x > 1.2);
+        REQUIRE(position->point.y > 3.4);
     }
 }

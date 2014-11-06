@@ -1,11 +1,13 @@
-#include "Component.hpp"
+#include "ecs/Component.hpp"
 
 namespace gfs {
-    Component::Component():
-        id{Component::nextId++} {} 
+    namespace ecs {
+        Component::Component():
+            id{Component::nextId++} {} 
 
-    Component::~Component() {
+        Component::~Component() {
+        }
+
+        int Component::nextId = 1;
     }
-
-    int Component::nextId = 1;
 }

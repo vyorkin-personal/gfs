@@ -4,8 +4,7 @@ MAKEFLAGS += --quiet
 
 LIB := -L lib -lstdc++
 INC := -I include
-INC_CATCH := -I external/catch
-INC_EXAMPLES := -I examples/include
+INC_TEST := -I external/catch -I test/include
 
 BIN_DIR := bin
 SRC_DIR := src
@@ -24,12 +23,12 @@ TESTS 	:= $(shell find $(TEST_DIR) -type f -name *.$(SRC_EXT))
 OBJECTS := $(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%,$(SOURCES:.$(SRC_EXT)=.o))
 
 $(LIB_TARGET): $(OBJECTS)
-	@echo 'linking...'
+	@echo 'linking... $@'
 	mkdir -p $(BIN_DIR)
 	ar rcs $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT)
-	@echo 'compiling $@'
+	@echo 'compiling $^'
 	mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
 
@@ -44,7 +43,7 @@ test: $(TEST_TARGET)
 
 $(TEST_TARGET): $(TESTS) $(LIB_TARGET)
 	@echo 'building test runner...'
-	$(CXX) $(CXXFLAGS) $(LIB) $(INC) $(INC_EXAMPLES) $(INC_CATCH) -o $@ $^
+	$(CXX) $(CXXFLAGS) $(LIB) $(INC) $(INC_TEST) -o $@ $^
 
 ticket: $(TICKET_TARGET)
 	@echo 'running ticket'
@@ -52,6 +51,6 @@ ticket: $(TICKET_TARGET)
 
 $(TICKET_TARGET): spikes/ticket.cpp $(LIB_TARGET)
 	@echo 'building ticket...'
-	$(CXX) $(CXXFLAGS) $(LIB) $(LIB_TARGET) $(INC) $(INC_EXAMPLES) $^ -o $@
+	$(CXX) $(CXXFLAGS) $(LIB) $(LIB_TARGET) $(INC) $^ -o $@
 
 .PHONY: clean

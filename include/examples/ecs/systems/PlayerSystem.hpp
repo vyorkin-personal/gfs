@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Example.hpp"
-#include "components/PlayerStateComponent.hpp"
+#include "examples/Example.hpp"
+#include "examples/ecs/components/PlayerStateComponent.hpp"
 
-class PlayerSystem: public ecs::System {
+class PlayerSystem: public System {
     public:
         virtual void initialize() {
             watchTags({"player"});
         }
 
-        virtual void processEntity(ecs::Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity, const float delta) {
             auto state = entity->getComponent<PlayerStateComponent>();
             state->hit();
         }

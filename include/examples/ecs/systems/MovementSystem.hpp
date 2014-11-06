@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Example.hpp"
-#include "components/PositionComponent.hpp"
-#include "components/VelocityComponent.hpp"
+#include "examples/Example.hpp"
+#include "examples/ecs/components/PositionComponent.hpp"
+#include "examples/ecs/components/VelocityComponent.hpp"
 
-class MovementSystem: public ecs::System {
+class MovementSystem: public System {
     public:
         virtual void initialize() {
             watchComponents<VelocityComponent, PositionComponent>();
         }
 
-        virtual void processEntity(ecs::Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity, const float delta) {
             auto pos = entity->getComponent<PositionComponent>();
             auto vel = entity->getComponent<VelocityComponent>();
 

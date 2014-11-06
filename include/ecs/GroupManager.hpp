@@ -7,9 +7,9 @@ namespace gfs {
         class GroupManager {
             public:
                 void addToGroup(Entity* entity, const String& group);
-
                 void removeFromGroup(Entity* entity, const String& group);
-                void clearGroups(Entity* entity);
+
+                void clear(Entity* entity);
 
                 bool isInAnyGroup(Entity* entity) const;
                 bool isInGroup(Entity* entity, const String& group) const;

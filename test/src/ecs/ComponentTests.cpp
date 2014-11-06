@@ -2,8 +2,8 @@
 #include "Test.hpp"
 
 TEST_CASE("Component") {
-    auto p1 = PositionComponent(1.1F, 1.2F);
-    auto p2 = PositionComponent(2.1F, 2.2F);
+    auto p1 = PositionComponent(1.1f, 1.2f);
+    auto p2 = PositionComponent(2.1f, 2.2f);
 
     SECTION("every new components gets a unique id") {
 	REQUIRE_FALSE(p1.getId() == p2.getId());

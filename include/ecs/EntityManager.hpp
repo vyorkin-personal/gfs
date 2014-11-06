@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Prerequisites.hpp"
-#include "Uid.hpp"
-#include "UidRegistry.hpp"
+#include "ecs/Uid.hpp"
+#include "ecs/UidRegistry.hpp"
 
 namespace gfs {
     namespace ecs {

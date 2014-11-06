@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Prerequisites.hpp"
-#include "UidRegistry.hpp"
-#include "System.hpp"
+#include "ecs/UidRegistry.hpp"
+#include "ecs/System.hpp"
 
 namespace gfs {
     namespace ecs {
@@ -14,10 +14,8 @@ namespace gfs {
                 SystemSet getSystems() const;
                 void process(const float delta);
 
-                template<class S> S* create() {
+                template<class S> S* add(S* system) {
                     const auto uid = uidRegistry->get<S>();
-
-                    auto system = new S();
                     system->uidRegistry = uidRegistry;
                     system->bits.system = uid.getBit();
                     system->initialize();

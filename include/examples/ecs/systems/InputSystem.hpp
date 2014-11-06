@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Example.hpp"
-#include "components/InputComponent.hpp"
+#include "examples/Example.hpp"
+#include "examples/ecs/components/InputComponent.hpp"
 
-class InputSystem: public ecs::System {
+class InputSystem: public System {
     public:
         virtual void initialize() {
             watchComponents<InputComponent>();
         }
 
-        virtual void processEntity(ecs::Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity, const float delta) {
             auto input = entity->getComponent<InputComponent>();
             if (input->isMoving())
                 input->stop();
