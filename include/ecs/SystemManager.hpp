@@ -8,16 +8,19 @@ namespace gfs {
     namespace ecs {
         class SystemManager final {
             public:
-                SystemManager(UidRegistry* registry);
+                SystemManager(World* world);
                 ~SystemManager();
 
                 SystemSet getSystems() const;
-                void process(const float delta);
+                void process();
 
                 template<class S> S* add(S* system) {
                     const auto uid = uidRegistry->get<S>();
+
+                    system->world = world;
                     system->uidRegistry = uidRegistry;
                     system->bits.system = uid.getBit();
+
                     system->initialize();
 
                     systems.insert(std::make_pair(uid, system));
@@ -34,6 +37,7 @@ namespace gfs {
                 }
 
             private:
+                World* world;
                 UidRegistry* uidRegistry;
                 SystemMap systems;
         };

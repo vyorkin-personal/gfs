@@ -1,9 +1,12 @@
 #include "ecs/SystemManager.hpp"
+#include "ecs/World.hpp"
 
 namespace gfs {
     namespace ecs {
-        SystemManager::SystemManager(UidRegistry* registry):
-            uidRegistry{registry} {}
+        SystemManager::SystemManager(World* world):
+            world{world} {
+            uidRegistry = world->getUidRegistry();
+        }
 
         SystemManager::~SystemManager() {
             for (auto& it: systems)
@@ -12,9 +15,9 @@ namespace gfs {
             systems.clear();
         }
 
-        void SystemManager::process(const float delta) {
-            for (auto& it: systems)
-                it.second->process(delta);
+        void SystemManager::process() {
+            for (const auto& it: systems)
+                it.second->process();
         }
 
         SystemSet SystemManager::getSystems() const {

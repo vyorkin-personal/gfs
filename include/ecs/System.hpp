@@ -11,7 +11,7 @@ namespace gfs {
                 virtual ~System() = default;
 
                 virtual void initialize() = 0;
-                void process(const float delta);
+                void process();
 
                 void onChange(Entity* entity);
 
@@ -24,7 +24,7 @@ namespace gfs {
                 void watchTags(var<String> tags);
                 void watchGroups(var<String> groups);
 
-                virtual void processEntity(Entity* entity, const float delta) = 0;
+                virtual void processEntity(Entity* entity) = 0;
 
                 virtual bool onProcessing() { return true; }
                 virtual void onProcessed() {}
@@ -34,7 +34,10 @@ namespace gfs {
 
                 EntitySet::size_type getEntityCount() const;
 
+                double getDelta() const;
+
             private:
+                World* world;
                 UidRegistry* uidRegistry;
 
                 EntitySet entities;

@@ -4,7 +4,7 @@ namespace gfs {
     namespace ecs {
         World::World(): delta(0.0) {
             uidRegistry = new UidRegistry();
-            systemManager = new SystemManager(uidRegistry);
+            systemManager = new SystemManager(this);
             entityManager = new EntityManager(this);
             groupManager = new GroupManager();
             tagManager = new TagManager();
@@ -31,7 +31,7 @@ namespace gfs {
         }
 
         void World::process() {
-            systemManager->process(delta);
+            systemManager->process();
 
             for (auto& entity: destroyedEntities) {
                 groupManager->clear(entity);

@@ -9,7 +9,7 @@ class InputSystem: public System {
             watchComponents<InputComponent>();
         }
 
-        virtual void processEntity(Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity) {
             auto input = entity->getComponent<InputComponent>();
             if (input->isMoving())
                 input->stop();

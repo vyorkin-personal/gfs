@@ -9,7 +9,7 @@ class RenderingSystem: public System {
             watchComponents<RenderableComponent>();
         }
 
-        virtual void processEntity(Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity) {
             auto renderable = entity->getComponent<RenderableComponent>();
             renderable->draw();
         }

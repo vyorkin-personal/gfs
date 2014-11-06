@@ -9,7 +9,7 @@ class AISystem: public System {
             watchGroups({"enemy"});
         }
 
-        virtual void processEntity(Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity) {
             auto ai = entity->getComponent<AIComponent>();
             ai->nextState();
         }

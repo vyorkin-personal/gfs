@@ -20,7 +20,7 @@ TEST_CASE("System") {
         player->setTag("player");
         player->addComponent(playerState);
 
-        playerSystem->process(world.getDelta());
+        playerSystem->process();
 
         auto expectedHealth = 119;
         auto actualHealth = playerState->getHealth();
@@ -43,7 +43,7 @@ TEST_CASE("System") {
         REQUIRE(ai1->isIdling());
         REQUIRE(ai2->isIdling());
 
-        aiSystem->process(world.getDelta());
+        aiSystem->process();
 
         REQUIRE_FALSE(ai1->isIdling());
         REQUIRE_FALSE(ai2->isIdling());
@@ -57,7 +57,7 @@ TEST_CASE("System") {
         ship->addComponent(velocity);
         ship->addComponent(position);
 
-        movementSystem->process(world.getDelta());
+        movementSystem->process();
 
         REQUIRE(position->point.x > 1.2);
         REQUIRE(position->point.y > 3.4);

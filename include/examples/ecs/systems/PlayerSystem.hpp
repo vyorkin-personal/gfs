@@ -9,7 +9,7 @@ class PlayerSystem: public System {
             watchTags({"player"});
         }
 
-        virtual void processEntity(Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity) {
             auto state = entity->getComponent<PlayerStateComponent>();
             state->hit();
         }

@@ -10,10 +10,10 @@ class MovementSystem: public System {
             watchComponents<VelocityComponent, PositionComponent>();
         }
 
-        virtual void processEntity(Entity* entity, const float delta) {
+        virtual void processEntity(Entity* entity) {
             auto pos = entity->getComponent<PositionComponent>();
             auto vel = entity->getComponent<VelocityComponent>();
 
-            pos->move(vel->vector * delta);
+            pos->move(vel->vector * getDelta());
         }
 };

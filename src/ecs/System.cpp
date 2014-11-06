@@ -1,5 +1,6 @@
 #include "ecs/System.hpp"
 #include "ecs/Entity.hpp"
+#include "ecs/World.hpp"
 
 namespace gfs {
     namespace ecs {
@@ -13,11 +14,11 @@ namespace gfs {
                 remove(entity);
         }
 
-        void System::process(const float delta) {
+        void System::process() {
             if (!onProcessing()) return;
 
             for (auto& entity: entities)
-                processEntity(entity, delta);
+                processEntity(entity);
 
             onProcessed();
         }
@@ -47,6 +48,10 @@ namespace gfs {
 
         EntitySet::size_type System::getEntityCount() const {
             return entities.size();
+        }
+
+        double System::getDelta() const {
+            world->getDelta();
         }
 
         void System::add(Entity* entity) {
