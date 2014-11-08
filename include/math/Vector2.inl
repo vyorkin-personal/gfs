@@ -1,9 +1,7 @@
 namespace gfs {
     namespace math {
-	template <class T>
-	const Vector2<T> Vector2<T>::zero = Vector2(static_cast<T>(0), static_cast<T>(0));
-	template <class T>
-	const Vector2<T> Vector2<T>::one = Vector2(static_cast<T>(1), static_cast<T>(1));
+	template <class T> const Vector2<T> Vector2<T>::zero = Vector2(0, 0);
+	template <class T> const Vector2<T> Vector2<T>::one = Vector2(1, 1);
 
 	template <class T>
 	Vector2<T>::Vector2(const T x, const T y): x{x}, y{y} {}
@@ -76,7 +74,7 @@ namespace gfs {
 
 	template <class T>
 	bool Vector2<T>::operator != (const Vector2<T>& other) const {
-	    return x != other.x || y != other.y;
+	    return !(*this == other);
 	}
 
 	template <class T>

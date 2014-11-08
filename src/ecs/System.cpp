@@ -51,7 +51,7 @@ namespace gfs {
         }
 
         double System::getDelta() const {
-            world->getDelta();
+            return world->getDelta();
         }
 
         void System::add(Entity* entity) {

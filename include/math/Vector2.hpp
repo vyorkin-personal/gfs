@@ -57,4 +57,4 @@ namespace gfs {
     }
 }
 
-#include "Vector2.inl"
+#include "math/Vector2.inl"
