@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Prerequisites.hpp"
-#include "ecs/Uid.hpp"
+#include "Uid.hpp"
 #include "ecs/Component.hpp"
 #include "ecs/EntityBits.hpp"
 #include "ecs/EntityManager.hpp"

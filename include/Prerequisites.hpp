@@ -25,6 +25,12 @@ namespace gfs {
 
     using String = std::string;
     using StringSet = std::unordered_set<String>;
+    using BitSet = std::bitset<BITSIZE>;
+    using BitSetMap = std::map<size_t, BitSet*>;
+
+    class Uid;
+    class UidRegistry;
+    using UidMap = std::map<size_t, Uid*>;
 
     namespace math {
         template <class T> struct Vector2;
@@ -47,13 +53,18 @@ namespace gfs {
         struct Polygon;
     }
 
+    namespace event {
+        class Event;
+        class EventBus;
+        using EventHandlerFunc = std::function<void(Event &)>;
+        using EventHandlerMap = std::multimap<Uid, EventHandlerFunc>;
+    }
+
     namespace ecs {
-        class Uid;
         class Component;
         struct EntityBits;
         class Entity;
         class System;
-        class UidRegistry;
         class EntityManager;
         class EntityManagerDumper;
         class SystemManager;
@@ -61,11 +72,8 @@ namespace gfs {
         class TagManager;
         class World;
 
-        using BitSet = std::bitset<BITSIZE>;
         using EntitySet = std::unordered_set<Entity*>;
         using ComponentSet = std::multiset<Component*>;
-        using BitSetMap = std::map<size_t, BitSet*>;
-        using UidMap = std::map<size_t, Uid*>;
         using IdEntityMap = std::map<int, Entity*>;
         using EntityQueue = std::queue<Entity*>;
         using TagEntityMap = std::map<String, Entity*>;

@@ -4,7 +4,7 @@ namespace gfs {
     namespace ecs {
         class Component {
             public:
-                virtual ~Component() = 0;
+                virtual ~Component() = default;
 
                 int getId() const {
                     return id;

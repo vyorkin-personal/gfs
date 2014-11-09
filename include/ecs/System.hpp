@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Prerequisites.hpp"
-#include "ecs/UidRegistry.hpp"
+#include "UidRegistry.hpp"
 #include "ecs/EntityBits.hpp"
 
 namespace gfs {

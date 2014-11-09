@@ -15,8 +15,8 @@
 #include "examples/ecs/systems/PlayerSystem.hpp"
 #include "examples/ecs/systems/RenderingSystem.hpp"
 
-#include "ecs/Uid.hpp"
-#include "ecs/UidRegistry.hpp"
+#include "Uid.hpp"
+#include "UidRegistry.hpp"
 #include "ecs/Entity.hpp"
 #include "ecs/EntityManager.hpp"
 #include "ecs/EntityManagerDumper.hpp"

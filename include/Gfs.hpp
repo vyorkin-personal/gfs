@@ -1,5 +1,8 @@
 #include "Prerequisites.hpp"
 
+#include "Uid.hpp"
+#include "UidRegistry.hpp"
+
 #include "math/Vector2.hpp"
 #include "math/Color4.hpp"
 #include "math/Polygon.hpp"

@@ -29,7 +29,7 @@ $(LIB_TARGET): $(OBJECTS)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT)
 	@echo 'compiling $^'
-	mkdir -p $(BUILD_DIR)/ecs $(BUILD_DIR)/math
+	mkdir -p $(BUILD_DIR)/ecs $(BUILD_DIR)/math $(BUILD_DIR)/event
 	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
 
 clean:

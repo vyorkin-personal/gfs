@@ -2,7 +2,7 @@
 
 #include "Prerequisites.hpp"
 
-#include "ecs/UidRegistry.hpp"
+#include "UidRegistry.hpp"
 #include "ecs/EntityManager.hpp"
 #include "ecs/Entity.hpp"
 #include "ecs/SystemManager.hpp"
