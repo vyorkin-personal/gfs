@@ -1,3 +1,8 @@
+[ ] write tests for World, pay attention to entity destruction
+[ ] add an ability to remove a System (?)
+[ ] review TagManager & GroupManager code
+[ ] finish entity tests
+[ ] write tests for TagManager
 [ ] write a doc-comments
 
 NOTES:
