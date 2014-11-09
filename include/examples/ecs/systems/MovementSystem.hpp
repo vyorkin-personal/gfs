@@ -6,11 +6,11 @@
 
 class MovementSystem: public System {
     public:
-        virtual void initialize() {
+        virtual void initialize() override {
             watchComponents<VelocityComponent, PositionComponent>();
         }
 
-        virtual void processEntity(Entity* entity) {
+        virtual void processEntity(Entity* entity) override {
             auto pos = entity->getComponent<PositionComponent>();
             auto vel = entity->getComponent<VelocityComponent>();
 

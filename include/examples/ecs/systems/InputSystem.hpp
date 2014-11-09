@@ -5,11 +5,11 @@
 
 class InputSystem: public System {
     public:
-        virtual void initialize() {
+        virtual void initialize() override {
             watchComponents<InputComponent>();
         }
 
-        virtual void processEntity(Entity* entity) {
+        virtual void processEntity(Entity* entity) override {
             auto input = entity->getComponent<InputComponent>();
             if (input->isMoving())
                 input->stop();

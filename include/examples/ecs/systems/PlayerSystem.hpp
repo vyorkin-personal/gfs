@@ -5,11 +5,11 @@
 
 class PlayerSystem: public System {
     public:
-        virtual void initialize() {
+        virtual void initialize() override {
             watchTags({"player"});
         }
 
-        virtual void processEntity(Entity* entity) {
+        virtual void processEntity(Entity* entity) override {
             auto state = entity->getComponent<PlayerStateComponent>();
             state->hit();
         }

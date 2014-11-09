@@ -10,10 +10,11 @@ namespace gfs {
             public:
                 virtual ~System() = default;
 
-                virtual void initialize() = 0;
                 void process();
-
                 void onChange(Entity* entity);
+
+                virtual void initialize() = 0;
+                virtual void processEntity(Entity* entity) = 0;
 
             protected:
                 template<class... Components>
@@ -24,17 +25,15 @@ namespace gfs {
                 void watchTags(var<String> tags);
                 void watchGroups(var<String> groups);
 
-                virtual void processEntity(Entity* entity) = 0;
+                EntitySet::size_type getEntityCount() const;
+
+                double getDelta() const;
 
                 virtual bool onProcessing() { return true; }
                 virtual void onProcessed() {}
 
                 virtual void onRemoved(Entity* entity) {}
                 virtual void onAdded(Entity* entity) {}
-
-                EntitySet::size_type getEntityCount() const;
-
-                double getDelta() const;
 
             private:
                 World* world;

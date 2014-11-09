@@ -6,12 +6,12 @@ namespace gfs {
     namespace math {
 	template <class T>
 	struct Color4 {
-	    static const Color4<T> black;
-	    static const Color4<T> white;
-	    static const Color4<T> red;
-	    static const Color4<T> green;
-	    static const Color4<T> blue;
-	    static const Color4<T> alpha;
+	    static const Color4<T> Black;
+	    static const Color4<T> White;
+	    static const Color4<T> Red;
+	    static const Color4<T> Green;
+	    static const Color4<T> Blue;
+	    static const Color4<T> Alpha;
 
 	    Color4() = default;
 	    Color4(const T r, const T g, const T b);

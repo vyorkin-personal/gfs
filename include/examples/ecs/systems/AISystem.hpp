@@ -5,11 +5,11 @@
 
 class AISystem: public System {
     public:
-        virtual void initialize() {
+        virtual void initialize() override {
             watchGroups({"enemy"});
         }
 
-        virtual void processEntity(Entity* entity) {
+        virtual void processEntity(Entity* entity) override {
             auto ai = entity->getComponent<AIComponent>();
             ai->nextState();
         }
