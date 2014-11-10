@@ -1,19 +1,21 @@
 #pragma once
 
 #include "examples/Example.hpp"
-#include "examples/ecs/components/InputComponent.hpp"
+#include "examples/event/KeyDownEvent.hpp"
 
 class InputSystem: public System {
     public:
         virtual void initialize() override {
-            watchComponents<InputComponent>();
+            watchTags({"player"});
+            getEventBus()->subscribe<KeyDownEvent>(this, &InputSystem::onKeyDown);
         }
 
-        virtual void processEntity(Entity* entity) override {
-            auto input = entity->getComponent<InputComponent>();
-            if (input->isMoving())
-                input->stop();
-            else
-                input->move();
+        void onKeyDown(const KeyDownEvent& e) {
+            if (e.keyCode != 13) return;
+
+            for (auto& entity: getEntities()) {
+                auto velocity = entity->getComponent<VelocityComponent>();
+                velocity->vector += 0.5f;
+            }
         }
 };

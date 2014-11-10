@@ -5,11 +5,13 @@
 
 class EventListener {
     public:
-	EventListener(EventBus& eventBus) {
+	EventListener(EventBus& eventBus, int* marker): marker{marker} {
 	    eventBus.subscribe<ExplosionEvent>(this, &EventListener::onExplosion);
 	}
 
-	void onExplosion(ExplosionEvent& event) {
-	    event.finished = true;
+	void onExplosion(const ExplosionEvent& event) {
+	    (*marker) = 2;
 	}
+
+	int* marker;
 };

@@ -14,7 +14,7 @@ namespace gfs {
                 void onChange(Entity* entity);
 
                 virtual void initialize() = 0;
-                virtual void processEntity(Entity* entity) = 0;
+                virtual void processEntity(Entity* entity) {};
 
             protected:
                 template<class... Components>
@@ -25,6 +25,14 @@ namespace gfs {
                 void watchTags(var<String> tags);
                 void watchGroups(var<String> groups);
 
+                event::EventBus* getEventBus() const {
+                    return eventBus;
+                }
+
+                EntitySet& getEntities() {
+                    return entities;
+                }
+                
                 EntitySet::size_type getEntityCount() const;
 
                 double getDelta() const;
@@ -38,6 +46,7 @@ namespace gfs {
             private:
                 World* world;
                 UidRegistry* uidRegistry;
+                event::EventBus* eventBus;
 
                 EntitySet entities;
                 EntityBits bits;

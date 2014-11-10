@@ -11,17 +11,17 @@ namespace gfs {
             public:
                 EventBus(UidRegistry* uidRegistry);
 
-                template<class E> void emit(E& event);
+                template<class E> void emit(const E& event);
                 template<class E, class S> void subscribe(
-                    S* system, void (S::* callback) (E &));
+                    S* system, void (S::* callback) (const E &));
 
             private:
                 template <class E> class EventCallback {
                     public:
-                        using EventFunc = std::function<void(E &)>;
+                        using EventFunc = std::function<void(const E &)>;
 
-                        EventCallback(EventFunc& func);
-                        void operator()(Event& event);
+                        EventCallback(const EventFunc& func);
+                        void operator()(const Event& event);
                     private:
                         EventFunc callback;
                 };

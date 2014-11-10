@@ -56,7 +56,7 @@ namespace gfs {
     namespace event {
         struct Event;
         class EventBus;
-        using EventHandlerFunc = std::function<void(Event &)>;
+        using EventHandlerFunc = std::function<void(const Event &)>;
         using EventHandlerMap = std::multimap<Uid, EventHandlerFunc>;
     }
 

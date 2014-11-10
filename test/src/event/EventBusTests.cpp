@@ -4,12 +4,13 @@
 TEST_CASE("EventBus") {
 	auto uidRegistry = new UidRegistry();
 	auto eventBus = EventBus(uidRegistry);
-	auto eventListener = EventListener(eventBus);
-	auto explosionEvent = ExplosionEvent(10.0f);
+	
+	int marker = 1;
+	auto eventListener = EventListener(eventBus, &marker);
 
 	SECTION("subscribe and emit") {
-		eventBus.emit(explosionEvent);
+		eventBus.emit(ExplosionEvent(10.0f));
 
-		REQUIRE(explosionEvent.finished == true);
+		REQUIRE(marker == 2);
 	}
 }

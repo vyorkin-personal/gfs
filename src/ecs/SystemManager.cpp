@@ -6,6 +6,7 @@ namespace gfs {
         SystemManager::SystemManager(World* world):
             world{world} {
             uidRegistry = world->getUidRegistry();
+            eventBus = world->getEventBus();
         }
 
         SystemManager::~SystemManager() {

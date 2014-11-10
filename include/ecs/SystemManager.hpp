@@ -2,7 +2,9 @@
 
 #include "Prerequisites.hpp"
 #include "UidRegistry.hpp"
+#include "event/EventBus.hpp"
 #include "ecs/System.hpp"
+#include "ecs/World.hpp"
 
 namespace gfs {
     namespace ecs {
@@ -19,6 +21,7 @@ namespace gfs {
 
                     system->world = world;
                     system->uidRegistry = uidRegistry;
+                    system->eventBus = eventBus;
                     system->bits.system = uid.getBit();
 
                     system->initialize();
@@ -39,6 +42,7 @@ namespace gfs {
             private:
                 World* world;
                 UidRegistry* uidRegistry;
+                event::EventBus* eventBus;
                 SystemMap systems;
         };
     }

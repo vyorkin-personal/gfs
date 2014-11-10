@@ -8,10 +8,10 @@ using namespace gfs::event;
 using namespace gfs::ecs;
 
 #include "examples/event/ExplosionEvent.hpp"
+#include "examples/event/KeyDownEvent.hpp"
 #include "examples/event/EventListener.hpp"
 
 #include "examples/ecs/components/AIComponent.hpp"
-#include "examples/ecs/components/InputComponent.hpp"
 #include "examples/ecs/components/PlayerStateComponent.hpp"
 #include "examples/ecs/components/PositionComponent.hpp"
 #include "examples/ecs/components/RenderableComponent.hpp"

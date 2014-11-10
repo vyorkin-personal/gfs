@@ -4,6 +4,7 @@ namespace gfs {
     namespace ecs {
         World::World(): delta(0.0) {
             uidRegistry = new UidRegistry();
+            eventBus = new event::EventBus(uidRegistry);
             systemManager = new SystemManager(this);
             entityManager = new EntityManager(this);
             groupManager = new GroupManager();
@@ -15,6 +16,7 @@ namespace gfs {
             delete groupManager;
             delete entityManager;
             delete systemManager;
+            delete eventBus;
             delete uidRegistry;
         }
 

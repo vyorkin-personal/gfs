@@ -1,13 +1,13 @@
 #include "Prerequisites.hpp"
 #include "World.hpp"
-#include "EntityManager.hpp"
-#include "SystemManager.hpp"
+#include "ecs/EntityManager.hpp"
+#include "ecs/SystemManager.hpp"
 
-#include "components/PositionComponent.hpp"
-#include "components/VelocityComponent.hpp"
-#include "components/RenderableComponent.hpp"
+#include "examples/components/PositionComponent.hpp"
+#include "examples/components/VelocityComponent.hpp"
+#include "examples/components/RenderableComponent.hpp"
 
-#include "systems/MovementSystem.hpp"
+#include "examples/systems/MovementSystem.hpp"
 
 using namespace gfs;
 

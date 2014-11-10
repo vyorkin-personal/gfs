@@ -3,6 +3,7 @@
 #include "Prerequisites.hpp"
 
 #include "UidRegistry.hpp"
+#include "event/EventBus.hpp"
 #include "ecs/EntityManager.hpp"
 #include "ecs/Entity.hpp"
 #include "ecs/SystemManager.hpp"
@@ -36,6 +37,10 @@ namespace gfs {
                     return groupManager;
                 }
 
+                event::EventBus* getEventBus() const {
+                    return eventBus;
+                }
+
                 Entity* createEntity();
                 void destroyEntity(Entity* entity);
                 Entity* getEntity(const int entityId);
@@ -56,6 +61,7 @@ namespace gfs {
                 EntityManager* entityManager;
                 TagManager* tagManager;
                 GroupManager* groupManager;
+                event::EventBus* eventBus;
 
                 EntitySet destroyedEntities;
 

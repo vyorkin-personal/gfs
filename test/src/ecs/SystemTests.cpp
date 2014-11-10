@@ -10,6 +10,7 @@ TEST_CASE("System") {
     auto movementSystem = systemManager->add(new MovementSystem());
     auto playerSystem = systemManager->add(new PlayerSystem());
     auto aiSystem = systemManager->add(new AISystem());
+    auto inputSystem = systemManager->add(new InputSystem());
 
     world.setDelta(1.2);
 
@@ -59,7 +60,25 @@ TEST_CASE("System") {
 
         movementSystem->process();
 
-        REQUIRE(position->point.x > 1.2);
-        REQUIRE(position->point.y > 3.4);
+        REQUIRE(position->point.x > 1.2f);
+        REQUIRE(position->point.y > 3.4f);
+    }
+
+    SECTION("event bus") {
+        auto eventBus = world.getEventBus();
+
+        auto player = entityManager->create();
+        auto velocity = new VelocityComponent(1.0f, 1.0f);
+        auto position = new PositionComponent(1.2f, 3.4f);
+
+        player->setTag("player");
+        player->addComponent(velocity);
+        player->addComponent(position);
+
+        eventBus->emit(KeyDownEvent(13));
+        inputSystem->process();
+
+        REQUIRE(velocity->vector.x > 1.4f);
+        REQUIRE(velocity->vector.y > 1.4f);
     }
 }
