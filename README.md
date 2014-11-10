@@ -44,7 +44,7 @@ Very simple implementation that provides `subscribe` & `emit` methods.
 Usage
 ===
 
-### Components
+### Example
 Let's define a component that represents a position & rotation in 2D space:
 ```
 struct Position: public Component {
@@ -95,7 +95,6 @@ struct Motion: public Component {
 		}
 };
 ```
-### Systems
 So a movement system will look like this:
 ```
 class MovementSystem: public System {
