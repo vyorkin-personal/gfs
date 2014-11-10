@@ -11,8 +11,9 @@ Stuff that i use to make games.
 Features
 ===
 
-Lightweight &amp; simple entity component system (c++11) havily inspired by artemis entity system framework.
-The idea is based on the [artemis](http://gamadu.com/artemis/) entity/component/system implemented in Java.
+### Entity component system
+
+Lightweight &amp; simple entity component system (c++11) havily inspired by [artemis](http://gamadu.com/artemis/) entity system framework implemented in Java.
 
 Here is some links to read about this concept:
 
@@ -30,12 +31,23 @@ Other C++ entity systems:
 * [miguelmartin75/anax](https://github.com/miguelmartin75/anax)
 * [alecthomas/entityx](https://github.com/alecthomas/entityx)
 
+### Event bus
+
+Very simple implementation that provides `subscribe` & `emit` methods.
+
+### Some basic math
+
+* `Vector2` aka `Point2f`, `Point2i`, `Size`
+* `Color4` aka `Color4f`
+* `Polygon`
+
 Usage
 ===
+
 ### Components
 Let's define a component that represents a position & rotation in 2D space:
 ```
-struct Position: public gfs::Component {
+struct Position: public Component {
 	Position(const Vector2f& pos, const float rot):
 		position{pos}, rotation{rot} {}
 
@@ -54,7 +66,7 @@ struct Position: public gfs::Component {
 ```
 Next we need a motion component to represent a velocity & dumping + helper method to apply dumping:
 ```
-struct Motion: public gfs::Component {
+struct Motion: public Component {
 	Motion(const Vector2f& vel, const float angVel, const float& damp):
 		velocity{vel}, angularVelocity{angVel}, damping{damp} {}
 	
@@ -86,19 +98,20 @@ struct Motion: public gfs::Component {
 ### Systems
 So a movement system will look like this:
 ```
-class MovementSystem: public gfs::System {
+class MovementSystem: public System {
 	public:
-		void initialize() {
+		virtual void initialize() override {
 			watchComponents<Position, Motion>();
 		}
 		
-		void processEntity(Entity* entity, const float delta) {
+		virtual void processEntity(Entity* entity) override {
 			auto position = entity.getComponent<Position>();
 			auto motion = entity.getComponent<Motion>();
+			auto dt = getDelta();
 			
-			position->move(motion->velocity, delta);
-			position->rotate(motion->angularVelocity, delta);
-			motion->damp(position->rotation, delta);
+			position->move(motion->velocity, dt);
+			position->rotate(motion->angularVelocity, dt);
+			motion->damp(position->rotation, dt);
 		}
 };
 ```
@@ -145,9 +158,9 @@ world.process();
 
 ## Systems
 ```
-class FooSystem: public gfs::System {
+class FooSystem: public System {
 	public:
-		void initialize() {
+		virtual void initialize() override {
 			// there are 3 ways for a system to process entities
 			
 			watchComponents<FooComponent, BarComponent>(); // 1
@@ -162,7 +175,7 @@ class FooSystem: public gfs::System {
 			// then entity will be processed by the system
 		}
 		
-		void processEntity(Entity* entity, const float delta) {
+		virtual void processEntity(Entity* entity) override {
 			auto foo = entity.getComponent<FooComponent>();
 			// ... and here goes entity processing code ...
 		}
@@ -170,6 +183,66 @@ class FooSystem: public gfs::System {
 ```
 
 Subscription is implemented using bitsets, look [here](https://github.com/vyorkin/gfs/blob/master/src/System.cpp#L5) to see the details.
+
+## Math
+
+TODO
+
+## EventBus
+
+So if i need to handle explosions i could write smth like this:
+```
+class ExplosionListener {
+    public:
+		ExplosionListener(EventBus& eventBus) {
+		    eventBus.subscribe<ExplosionEvent>(this, &EventListener::onExplosion);
+		}
+
+		void onExplosion(const ExplosionEvent& event) {
+			// do smth with it
+		}
+};
+```
+
+Later, somewhere deep in a game logic...
+```
+eventBus.emit(ExplosionEvent(...));
+```
+
+--
+
+Here is how i can use it with ECS to handle keyboard events.
+
+First i'll define a KeyEvent struct:
+```
+struct KeyEvent: public Event {
+    KeyEvent(const int keyCode, const char keyChar):
+        keyCode{keyCode}, keyChar{keyChar} {}
+
+    int keyCode;
+    char keyChar;
+};
+
+```
+Level scene emits the event:
+```
+void LevelScene::onKey(const int keyCode, const char keyChar) {
+    world->getEventBus()->emit(KeyEvent(keyCode, keyChar));
+}
+```
+
+Than i can subscribe to it in the system:
+```
+class BarSystem: public System {
+	virtual void initialize() override {
+		getEventBus()->subscribe<KeyEvent>(this, &BarSystem::onKey);
+	}
+	
+	void onKey(const KeyEvent& e) {
+		// handle key event somehow
+	}
+};
+```
 
 testing
 ===
