@@ -4,9 +4,8 @@
 
 namespace gfs {
     namespace event {
-        class Event {
-            public:
-                virtual ~Event() = default;
+        struct Event {
+            virtual ~Event() = default;
         };
     }
 }

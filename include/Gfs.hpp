@@ -7,9 +7,13 @@
 #include "math/Color4.hpp"
 #include "math/Polygon.hpp"
 
+#include "event/Event.hpp"
+#include "event/EventBus.hpp"
+
 #include "ecs/Component.hpp"
 #include "ecs/Entity.hpp"
 #include "ecs/EntityManager.hpp"
+#include "ecs/EntityManagerDumper.hpp"
 #include "ecs/System.hpp"
 #include "ecs/SystemManager.hpp"
 #include "ecs/GroupManager.hpp"

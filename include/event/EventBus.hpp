@@ -11,7 +11,7 @@ namespace gfs {
             public:
                 EventBus(UidRegistry* uidRegistry);
 
-                template<class E> void emit(const E& event);
+                template<class E> void emit(E& event);
                 template<class E, class S> void subscribe(
                     S* system, void (S::* callback) (E &));
 
@@ -20,10 +20,10 @@ namespace gfs {
                     public:
                         using EventFunc = std::function<void(E &)>;
 
-                        EventCallback(const EventFunc& func);
-                        void operator()(const Event& event);
+                        EventCallback(EventFunc& func);
+                        void operator()(Event& event);
                     private:
-                        EventCallback callback;
+                        EventFunc callback;
                 };
 
                 UidRegistry* uidRegistry;

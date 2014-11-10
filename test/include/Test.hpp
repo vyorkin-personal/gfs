@@ -1,6 +1,14 @@
 #pragma once
 
-#include "Prerequisites.hpp"
+#include "Gfs.hpp"
+
+using namespace gfs;
+using namespace gfs::math;
+using namespace gfs::event;
+using namespace gfs::ecs;
+
+#include "examples/event/ExplosionEvent.hpp"
+#include "examples/event/EventListener.hpp"
 
 #include "examples/ecs/components/AIComponent.hpp"
 #include "examples/ecs/components/InputComponent.hpp"
@@ -14,18 +22,3 @@
 #include "examples/ecs/systems/MovementSystem.hpp"
 #include "examples/ecs/systems/PlayerSystem.hpp"
 #include "examples/ecs/systems/RenderingSystem.hpp"
-
-#include "Uid.hpp"
-#include "UidRegistry.hpp"
-#include "ecs/Entity.hpp"
-#include "ecs/EntityManager.hpp"
-#include "ecs/EntityManagerDumper.hpp"
-#include "ecs/System.hpp"
-#include "ecs/SystemManager.hpp"
-#include "ecs/GroupManager.hpp"
-#include "ecs/TagManager.hpp"
-#include "ecs/World.hpp"
-
-using namespace gfs;
-using namespace gfs::ecs;
-using namespace gfs::math;

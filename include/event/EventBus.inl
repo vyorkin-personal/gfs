@@ -1,16 +1,16 @@
 namespace gfs {
     namespace event {
         template <class E>
-        EventBus::EventCallback<E>::EventCallback(const EventFunc& func):
+        EventBus::EventCallback<E>::EventCallback(EventFunc& func):
             callback{func} {}
 
         template <class E>
-        void EventBus::EventCallback<E>::operator()(const Event& event) {
+        void EventBus::EventCallback<E>::operator()(Event& event) {
             callback(static_cast<E &>(event));
         }
 
         template <class E>
-        void EventBus::emit(const E& event) {
+        void EventBus::emit(E& event) {
             const auto uid = uidRegistry->get<E>();
             auto range = eventHandlers.equal_range(uid);
             auto next = range.first;
