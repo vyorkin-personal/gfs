@@ -1,7 +1,7 @@
 namespace gfs {
     namespace math {
-	template <class T> const Vector2<T> Vector2<T>::zero = Vector2(0, 0);
-	template <class T> const Vector2<T> Vector2<T>::one = Vector2(1, 1);
+	template <class T> const Vector2<T> Vector2<T>::Zero = Vector2(0, 0);
+	template <class T> const Vector2<T> Vector2<T>::One = Vector2(1, 1);
 
 	template <class T>
 	Vector2<T>::Vector2(const T x, const T y): x{x}, y{y} {}

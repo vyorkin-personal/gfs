@@ -6,8 +6,8 @@ namespace gfs {
     namespace math {
 	template <class T>
 	struct Vector2 {
-	    static const Vector2 zero;
-	    static const Vector2 one;
+	    static const Vector2 Zero;
+	    static const Vector2 One;
 
 	    Vector2() = default;
 	    Vector2(const T x, const T y);
