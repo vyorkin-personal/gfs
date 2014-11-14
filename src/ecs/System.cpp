@@ -54,6 +54,15 @@ namespace gfs {
             return world->getDelta();
         }
 
+        void System::reset() {
+            bits.reset();
+
+            for (auto& entity: entities)
+                entity->bits.system.reset();
+
+            entities.clear();
+        }
+
         void System::add(Entity* entity) {
             entities.insert(entity);
             entity->bits.system |= bits.system;

@@ -31,5 +31,16 @@ namespace gfs {
 
             return result;
         }
+
+        void SystemManager::reset() {
+            for (auto& it: systems) {
+                const auto uid = it.first;
+                auto system = it.second;
+
+                system->reset();
+                system->bits.system = uid.getBit();
+                system->initialize();
+            }
+        }
     }
 }

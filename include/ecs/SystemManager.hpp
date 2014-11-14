@@ -39,6 +39,8 @@ namespace gfs {
                         nullptr : dynamic_cast<S*>(it->second);
                 }
 
+                void reset();
+
             private:
                 World* world;
                 UidRegistry* uidRegistry;

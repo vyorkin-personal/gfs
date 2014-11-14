@@ -47,5 +47,13 @@ namespace gfs {
             const auto it = tagByEntity.find(entity->getId());
             return it == tagByEntity.cend() ? nullptr : it->second;
         }
+
+        void TagManager::reset() {
+            for (auto it: entityByTag)
+                clear(it.second);
+
+            entityByTag.clear();
+            tagByEntity.clear();
+        }
     }
 }

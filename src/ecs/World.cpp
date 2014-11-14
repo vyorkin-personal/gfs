@@ -43,5 +43,12 @@ namespace gfs {
 
             destroyedEntities.clear();
         }
+
+        void World::reset() {
+            // TODO: Fix it
+            tagManager->reset();
+            groupManager->reset();
+            entityManager->destroyAll();
+        }
     }
 }

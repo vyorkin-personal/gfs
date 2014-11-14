@@ -46,6 +46,7 @@ namespace gfs {
                 Entity* getEntity(const int entityId);
 
                 void process();
+                void reset();
 
                 void setDelta(const double dt) {
                     delta = dt;

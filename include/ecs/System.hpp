@@ -10,10 +10,10 @@ namespace gfs {
             public:
                 virtual ~System() = default;
 
-                void process();
+                virtual void process();
                 void onChange(Entity* entity);
 
-                virtual void initialize() = 0;
+                virtual void initialize() {};
                 virtual void processEntity(Entity* entity) {};
 
             protected:
@@ -36,6 +36,8 @@ namespace gfs {
                 EntitySet::size_type getEntityCount() const;
 
                 double getDelta() const;
+
+                void reset();
 
                 virtual bool onProcessing() { return true; }
                 virtual void onProcessed() {}

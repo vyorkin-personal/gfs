@@ -14,12 +14,15 @@ namespace gfs {
 
                 void clear(const String& tag);
                 void clear(Entity* entity);
+                void clear(const int entityId);
 
                 bool isSet(const String& tag);
                 bool isSet(Entity* entity);
 
                 Entity* get(const String& tag);
                 String get(Entity* entity);
+
+                void reset();
 
             private:
                 UidRegistry* uidRegistry;

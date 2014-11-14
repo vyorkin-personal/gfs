@@ -16,6 +16,13 @@ namespace gfs {
                     (bits.group & group) == group &&
                     (bits.component & component) == component;
             }
+
+            void reset() {
+                tag.reset();
+                group.reset();
+                component.reset();
+                system.reset();
+            }
         };
     }
 }

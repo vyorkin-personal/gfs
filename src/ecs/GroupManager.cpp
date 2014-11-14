@@ -28,7 +28,6 @@ namespace gfs {
                     if (next->second == group) {
                         const auto groupBit = uidRegistry->getBit(group);
                         entity->bits.group &= ~groupBit;
-
                         next = groupsByEntity.erase(next);
                     } else {
                         next++;
@@ -49,6 +48,14 @@ namespace gfs {
             }
 
             groupsByEntity.erase(entity->getId());
+        }
+
+        void GroupManager::clear(const String& group) {
+            const auto it = entitiesByGroup.find(group);
+            if (it == entitiesByGroup.cend()) return;
+
+            for (auto& entity: it->second)
+                removeFromGroup(entity, group);
         }
 
         bool GroupManager::isInAnyGroup(Entity* entity) const {
@@ -83,6 +90,14 @@ namespace gfs {
         EntitySet GroupManager::getEntitiesInGroup(const String& group) const {
             const auto it = entitiesByGroup.find(group);
             return it == entitiesByGroup.cend() ?  EntitySet() : it->second;
+        }
+
+        void GroupManager::reset() {
+            for (auto& it: entitiesByGroup)
+                clear(it.first);
+
+            groupsByEntity.clear();
+            entitiesByGroup.clear();
         }
     }
 }
