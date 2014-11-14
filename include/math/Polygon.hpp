@@ -6,9 +6,6 @@
 namespace gfs {
     namespace math {
 	struct Polygon {
-	    Polygon(const Polygon& other) {
-		vertices = other.vertices;
-	    }
 	    std::vector<Vector2f> vertices;
 	};
     }

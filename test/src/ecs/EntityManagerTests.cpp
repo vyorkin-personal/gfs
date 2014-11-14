@@ -79,6 +79,20 @@ TEST_CASE("EntityManager") {
 	    }
 	}
 
+	SECTION("has component") {
+	    auto entity3 = entityManager->create();
+	    auto entity4 = entityManager->create();
+
+	    entityManager->addComponent(entity3, new PositionComponent(1.0f, 2.0f));
+	    entityManager->addComponent(entity4, new VelocityComponent(2.0f, 3.0f));
+
+	    REQUIRE(entityManager->hasComponent<PositionComponent>(entity3));
+	    REQUIRE_FALSE(entityManager->hasComponent<VelocityComponent>(entity3));
+
+	    REQUIRE_FALSE(entityManager->hasComponent<PositionComponent>(entity4));
+	    REQUIRE(entityManager->hasComponent<VelocityComponent>(entity4));
+	}
+
 	SECTION("get by entity and component type") {
 	    SECTION("components are correct") {
 		REQUIRE(entityManager->getComponent(entity1, posUid) == pos1);

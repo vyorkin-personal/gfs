@@ -3,11 +3,15 @@
 
 namespace gfs {
     namespace ecs {
+        GroupManager::GroupManager(UidRegistry* uidRegistry):
+            uidRegistry{uidRegistry} {}
+
         void GroupManager::addToGroup(Entity* entity, const String& group) {
             auto it = entitiesByGroup.insert(std::make_pair(group, EntitySet()));
 
             it.first->second.insert(entity);
             groupsByEntity.insert(std::make_pair(entity->getId(), group));
+            entity->bits.group |= uidRegistry->getBit(group);
         }
 
         void GroupManager::removeFromGroup(Entity* entity, const String& group) {
@@ -22,6 +26,9 @@ namespace gfs {
             if (next != groupsByEntity.end()) {
                 while (next != end) {
                     if (next->second == group) {
+                        const auto groupBit = uidRegistry->getBit(group);
+                        entity->bits.group &= ~groupBit;
+
                         next = groupsByEntity.erase(next);
                     } else {
                         next++;
@@ -31,6 +38,7 @@ namespace gfs {
         }
 
         void GroupManager::clear(Entity* entity) {
+            entity->bits.group.reset();
             auto groups = getGroupsContaining(entity);
             if (groups.empty()) return;
 

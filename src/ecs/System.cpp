@@ -24,11 +24,11 @@ namespace gfs {
         }
 
         bool System::isWatchingFor(Entity* entity) const {
-            return (entity->getSystemBits() & bits.system) == bits.system;
+            return (entity->bits.system & bits.system) == bits.system;
         }
 
         bool System::isInterestedIn(Entity* entity) const {
-            return bits.contains(entity->getBits());
+            return bits.contains(entity->bits);
         }
 
         void System::watchComponents(var<std::type_info> types) {
@@ -56,13 +56,13 @@ namespace gfs {
 
         void System::add(Entity* entity) {
             entities.insert(entity);
-            entity->addSystemBit(bits.system);
+            entity->bits.system |= bits.system;
             onAdded(entity);
         }
 
         void System::remove(Entity* entity) {
             entities.erase(entity);
-            entity->removeSystemBit(bits.system);
+            entity->bits.system &= ~bits.system;
             onRemoved(entity);
         }
     }

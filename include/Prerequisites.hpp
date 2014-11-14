@@ -17,6 +17,7 @@
 #include <limits>
 #include <algorithm>
 #include <cmath>
+#include <random>
 
 #include "Configuration.hpp"
 
@@ -41,17 +42,26 @@ namespace gfs {
         using Vector2d = Vector2<double>;
         using Vector2i = Vector2<int>;
 
-        using Point2f = Vector2<float>;
-        using Point2d = Vector2<double>;
-        using Point2i = Vector2<int>;
+        template<class T> using Size2 = Vector2<T>;
+        template<class T> using Point2 = Vector2<T>;
+
+        using Point2f = Point2<float>;
+        using Point2d = Point2<double>;
+        using Point2i = Point2<int>;
 
         using Color4f = Color4<float>;
         using Color4d = Color4<double>;
         using Color4i = Color4<int>;
 
-        using Size = Vector2i;
+        using Size2i = Size2<int>;
+        using Size2f = Size2<float>;
 
         struct Polygon;
+
+        template <class T> struct Rectangle;
+
+        using Rectanglei = Rectangle<int>;
+        using Rectanglef = Rectangle<float>;
     }
 
     namespace event {

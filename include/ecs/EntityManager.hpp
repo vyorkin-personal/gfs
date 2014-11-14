@@ -26,15 +26,21 @@ namespace gfs {
                 void removeComponents(Entity* entity);
                 void removeComponent(Entity* entity, const Uid& uid);
                 template<class C> void removeComponent(Entity* entity) {
-                    auto uid = uidRegistry->get<C>();
+                    const auto uid = uidRegistry->get<C>();
                     removeComponent(entity, uid);
                 }
 
                 ComponentSet getComponents(Entity* entity);
                 Component* getComponent(Entity* entity, const Uid& uid);
                 template<class C> C* getComponent(Entity* entity) {
-                    auto uid = uidRegistry->get<C>();
+                    const auto uid = uidRegistry->get<C>();
                     return dynamic_cast<C*>(getComponent(entity, uid));
+                }
+
+                bool hasComponent(Entity* entity, const Uid& uid) const;
+                template<class C> bool hasComponent(Entity* entity) const {
+                    const auto uid = uidRegistry->get<C>();
+                    return hasComponent(entity, uid);
                 }
 
                 void notifyEntityChanged(Entity* entity);

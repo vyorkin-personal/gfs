@@ -10,6 +10,7 @@ namespace gfs {
 	    static const Vector2 One;
 
 	    Vector2() = default;
+	    Vector2(const Vector2&) = default;
 	    Vector2(const T x, const T y);
 
 	    T distance(const Vector2& other) const;

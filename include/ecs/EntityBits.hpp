@@ -12,8 +12,8 @@ namespace gfs {
 
             bool contains(const EntityBits& bits) const {
                 return
-                    (bits.tag & tag) == tag ||
-                    (bits.group & group) == group ||
+                    (bits.tag & tag) == tag &&
+                    (bits.group & group) == group &&
                     (bits.component & component) == component;
             }
         };

@@ -1,11 +1,15 @@
 #pragma once
 
 #include "Prerequisites.hpp"
+#include "Uid.hpp"
+#include "UidRegistry.hpp"
 
 namespace gfs {
     namespace ecs {
         class TagManager {
             public:
+                TagManager(UidRegistry* uidRegistry);
+
                 void set(Entity* entity, const String& tag);
 
                 void clear(const String& tag);
@@ -18,6 +22,7 @@ namespace gfs {
                 String get(Entity* entity);
 
             private:
+                UidRegistry* uidRegistry;
                 TagEntityMap entityByTag;
                 EntityTagMap tagByEntity;
         };

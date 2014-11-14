@@ -5,6 +5,7 @@
 
 #include "math/Vector2.hpp"
 #include "math/Color4.hpp"
+#include "math/Rectangle.hpp"
 #include "math/Polygon.hpp"
 
 #include "event/Event.hpp"

@@ -15,18 +15,24 @@ TEST_CASE("System") {
     world.setDelta(1.2);
 
     SECTION("tag") {
-        auto player = entityManager->create();
-        auto playerState = new PlayerStateComponent(120);
+        auto player1 = entityManager->create();
+        auto player2 = entityManager->create();
+        auto playerState1 = new PlayerStateComponent(120);
+        auto playerState2 = new PlayerStateComponent(120);
 
-        player->setTag("player");
-        player->addComponent(playerState);
+        player1->setTag("player");
+        player1->addComponent(playerState1);
+        player2->addComponent(playerState2);
 
         playerSystem->process();
 
-        auto expectedHealth = 119;
-        auto actualHealth = playerState->getHealth();
+        auto expectedHealth1 = 119;
+        auto expectedHealth2 = 120;
+        auto actualHealth1 = playerState1->getHealth();
+        auto actualHealth2 = playerState2->getHealth();
         
-        REQUIRE(expectedHealth == actualHealth);
+        REQUIRE(expectedHealth1 == actualHealth1);
+        REQUIRE(expectedHealth2 == actualHealth2);
     }
 
     SECTION("group") {

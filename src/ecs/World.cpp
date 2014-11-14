@@ -7,8 +7,8 @@ namespace gfs {
             eventBus = new event::EventBus(uidRegistry);
             systemManager = new SystemManager(this);
             entityManager = new EntityManager(this);
-            groupManager = new GroupManager();
-            tagManager = new TagManager();
+            groupManager = new GroupManager(uidRegistry);
+            tagManager = new TagManager(uidRegistry);
         }
 
         World::~World() {

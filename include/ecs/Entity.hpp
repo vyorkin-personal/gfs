@@ -59,27 +59,6 @@ namespace gfs {
             private:
                 void reset();
 
-                const EntityBits& getBits() const {
-                    return bits;
-                }
-
-                void addComponentBit(const BitSet& bit) {
-                    bits.component |= bit;
-                }
-                void removeComponentBit(const BitSet& bit) {
-                    bits.component &= ~bit;
-                }
-
-                const BitSet& getSystemBits() const {
-                    return bits.system;
-                }
-                void addSystemBit(const BitSet& bit) {
-                    bits.system |= bit;
-                }
-                void removeSystemBit(const BitSet& bit) {
-                    bits.system &= ~bit;
-                }
-
                 int id;
 
                 EntityBits bits;
@@ -91,6 +70,8 @@ namespace gfs {
                 TagManager* tagManager;
 
                 friend EntityManager;
+                friend GroupManager;
+                friend TagManager;
                 friend System;
         };
     }
