@@ -17,6 +17,8 @@ namespace gfs {
                 virtual void processEntity(Entity* entity) {};
 
             protected:
+                World* world;
+
                 template<class... Components>
                 void watchComponents() {
                     addToComponentBits(TypeList<Components...>());
@@ -46,7 +48,6 @@ namespace gfs {
                 virtual void onAdded(Entity* entity) {}
 
             private:
-                World* world;
                 UidRegistry* uidRegistry;
                 event::EventBus* eventBus;
 
