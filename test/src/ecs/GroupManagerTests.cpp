@@ -21,18 +21,18 @@ TEST_CASE("GroupManager") {
     groupManager->addToGroup(entity3, group2);
 
     SECTION("is in group") {
-        REQUIRE(groupManager->isInGroup(entity1, group1) == true);
-        REQUIRE(groupManager->isInGroup(entity2, group1) == true);
-        REQUIRE(groupManager->isInGroup(entity3, group1) == false);
+        REQUIRE(groupManager->isInGroup(entity1, group1));
+        REQUIRE(groupManager->isInGroup(entity2, group1));
+        REQUIRE_FALSE(groupManager->isInGroup(entity3, group1));
 
-        REQUIRE(groupManager->isInGroup(entity1, group2) == false);
-        REQUIRE(groupManager->isInGroup(entity2, group2) == true);
-        REQUIRE(groupManager->isInGroup(entity3, group2) == true);
+        REQUIRE_FALSE(groupManager->isInGroup(entity1, group2));
+        REQUIRE(groupManager->isInGroup(entity2, group2));
+        REQUIRE(groupManager->isInGroup(entity3, group2));
     }
 
     SECTION("is in any group") {
-        REQUIRE(groupManager->isInAnyGroup(entity1) == true);
-        REQUIRE(groupManager->isInAnyGroup(entity4) == false);
+        REQUIRE(groupManager->isInAnyGroup(entity1));
+        REQUIRE_FALSE(groupManager->isInAnyGroup(entity4));
     }
 
     SECTION("get groups containing entity") {
@@ -61,15 +61,15 @@ TEST_CASE("GroupManager") {
     SECTION("remove from group") {
         groupManager->removeFromGroup(entity2, group1);
         
-        REQUIRE(groupManager->isInGroup(entity2, group1) == false);
-        REQUIRE(groupManager->isInGroup(entity2, group2) == true);
+        REQUIRE_FALSE(groupManager->isInGroup(entity2, group1));
+        REQUIRE(groupManager->isInGroup(entity2, group2));
     }
 
-    SECTION("clear groups") {
+    SECTION("clear by entity") {
         groupManager->clear(entity2);
         
-        REQUIRE(groupManager->isInGroup(entity2, group1) == false);
-        REQUIRE(groupManager->isInGroup(entity2, group2) == false);
-        REQUIRE(groupManager->isInGroup(entity1, group1) == true);
+        REQUIRE_FALSE(groupManager->isInGroup(entity2, group1));
+        REQUIRE_FALSE(groupManager->isInGroup(entity2, group2));
+        REQUIRE(groupManager->isInGroup(entity1, group1));
     }
 }

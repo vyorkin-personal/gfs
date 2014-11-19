@@ -95,6 +95,6 @@ namespace gfs {
         using SystemSet = std::multiset<System*>;
         using SystemMap = std::map<Uid, System*>;
         using GroupMap = std::multimap<int, String>;
-        using EntitiesByGroupMap = std::map<String, EntitySet>;
+        using EntitiesByGroupMap = std::map<Uid, EntitySet>;
     }
 }

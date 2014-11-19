@@ -7,17 +7,21 @@ namespace gfs {
             uidRegistry{uidRegistry} {}
 
         void GroupManager::addToGroup(Entity* entity, const String& group) {
-            auto it = entitiesByGroup.insert(std::make_pair(group, EntitySet()));
+            const auto uid = uidRegistry->get(group);
+            auto it = entitiesByGroup.insert(std::make_pair(uid, EntitySet()));
 
             it.first->second.insert(entity);
+
             groupsByEntity.insert(std::make_pair(entity->getId(), group));
-            entity->bits.group |= uidRegistry->getBit(group);
+            entity->bits.group |= uid.getBit();
         }
 
         void GroupManager::removeFromGroup(Entity* entity, const String& group) {
-            const auto it = entitiesByGroup.find(group);
-            if (it != entitiesByGroup.cend())
-                it->second.erase(entity);
+            const auto uid = uidRegistry->get(group);
+            const auto it = entitiesByGroup.find(uid);
+            if (it == entitiesByGroup.cend()) return;
+
+            it->second.erase(entity);
 
             auto range = groupsByEntity.equal_range(entity->getId());
             auto next = range.first;
@@ -26,8 +30,7 @@ namespace gfs {
             if (next != groupsByEntity.end()) {
                 while (next != end) {
                     if (next->second == group) {
-                        const auto groupBit = uidRegistry->getBit(group);
-                        entity->bits.group &= ~groupBit;
+                        entity->bits.group &= ~uid.getBit();
                         next = groupsByEntity.erase(next);
                     } else {
                         next++;
@@ -42,20 +45,13 @@ namespace gfs {
             if (groups.empty()) return;
 
             for (const auto& group: groups) {
-                const auto it = entitiesByGroup.find(group);
+                const auto uid = uidRegistry->get(group);
+                const auto it = entitiesByGroup.find(uid);
                 if (it != entitiesByGroup.cend())
                     it->second.erase(entity);
             }
 
             groupsByEntity.erase(entity->getId());
-        }
-
-        void GroupManager::clear(const String& group) {
-            const auto it = entitiesByGroup.find(group);
-            if (it == entitiesByGroup.cend()) return;
-
-            for (auto& entity: it->second)
-                removeFromGroup(entity, group);
         }
 
         bool GroupManager::isInAnyGroup(Entity* entity) const {
@@ -64,14 +60,19 @@ namespace gfs {
         }
 
         bool GroupManager::isInGroup(Entity* entity, const String& group) const {
-            auto const it = entitiesByGroup.find(group);
+            const auto uid = uidRegistry->get(group); 
+            const auto it = entitiesByGroup.find(uid);
             return it != entitiesByGroup.cend() &&
                 it->second.find(entity) != it->second.cend();
         }
 
+        bool GroupManager::isEmptyGroup(const String& group) const {
+            const auto uid = uidRegistry->get(group);
+            return entitiesByGroup.find(uid) == entitiesByGroup.cend();
+        }
+
         StringSet GroupManager::getGroupsContaining(Entity* entity) const {
             auto result = StringSet();
-
             auto range = groupsByEntity.equal_range(entity->getId());
 
             auto next = range.first;
@@ -88,13 +89,16 @@ namespace gfs {
         }
 
         EntitySet GroupManager::getEntitiesInGroup(const String& group) const {
-            const auto it = entitiesByGroup.find(group);
+            const auto uid = uidRegistry->get(group);
+            const auto it = entitiesByGroup.find(uid);
             return it == entitiesByGroup.cend() ?  EntitySet() : it->second;
         }
 
         void GroupManager::reset() {
-            for (auto& it: entitiesByGroup)
-                clear(it.first);
+            for (auto& it: entitiesByGroup) {
+                for (auto& entity: it.second)
+                    entity->bits.group.reset();
+            }
 
             groupsByEntity.clear();
             entitiesByGroup.clear();

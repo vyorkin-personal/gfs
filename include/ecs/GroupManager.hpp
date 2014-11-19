@@ -14,10 +14,11 @@ namespace gfs {
                 void removeFromGroup(Entity* entity, const String& group);
 
                 void clear(Entity* entity);
-                void clear(const String& group);
 
                 bool isInAnyGroup(Entity* entity) const;
                 bool isInGroup(Entity* entity, const String& group) const;
+
+                bool isEmptyGroup(const String& group) const;
 
                 StringSet getGroupsContaining(Entity* entity) const;
                 EntitySet getEntitiesInGroup(const String& group) const;
