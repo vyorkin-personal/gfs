@@ -68,7 +68,8 @@ namespace gfs {
 
         bool GroupManager::isEmptyGroup(const String& group) const {
             const auto uid = uidRegistry->get(group);
-            return entitiesByGroup.find(uid) == entitiesByGroup.cend();
+            auto it = entitiesByGroup.find(uid);
+            return it == entitiesByGroup.cend() || it->second.empty();
         }
 
         StringSet GroupManager::getGroupsContaining(Entity* entity) const {

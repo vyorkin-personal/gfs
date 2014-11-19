@@ -72,4 +72,11 @@ TEST_CASE("GroupManager") {
         REQUIRE_FALSE(groupManager->isInGroup(entity2, group2));
         REQUIRE(groupManager->isInGroup(entity1, group1));
     }
+
+    SECTION("isEmptyGroup") {
+        groupManager->removeFromGroup(entity1, group1);
+        groupManager->removeFromGroup(entity2, group1);
+
+        REQUIRE(groupManager->isEmptyGroup(group1));
+    }
 }
