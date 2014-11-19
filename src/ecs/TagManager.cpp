@@ -50,7 +50,7 @@ namespace gfs {
 
         void TagManager::reset() {
             for (auto it: entityByTag)
-                clear(it.second);
+                it.second->bits.tag.reset();
 
             entityByTag.clear();
             tagByEntity.clear();

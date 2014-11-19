@@ -45,9 +45,8 @@ namespace gfs {
         }
 
         void World::reset() {
-            // TODO: Fix it
-            /* tagManager->reset(); */
-            /* groupManager->reset(); */
+            tagManager->reset();
+            groupManager->reset();
             entityManager->destroyAll();
         }
     }
